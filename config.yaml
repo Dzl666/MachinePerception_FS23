@@ -1,0 +1,52 @@
+global:
+  save_root: './log/checkpoints'
+  exp_name: 'mp_nerf'
+  data_root: 'data/public'
+  workers: 1
+
+optimizer:
+  lr: 0.0003
+  beta1: 0.9
+  beta2: 0.999
+  # weight_decay: 0.00005
+
+train:
+  epochs: 8000
+  batch_size: 2
+  num_rays_per_img: 1024
+  num_pts_per_ray: 64
+  num_pts_importance_per_ray: 256
+  near: 1.0
+  far: 3.0
+  log_every: 100
+  valid_every: 400
+  save_every: 400
+
+
+validation:
+  mip: 2
+  sigma_thres: 50.0
+  chunk_size: 8192
+  num_pts_per_ray_render: 64
+  num_pts_importance_per_ray_render: 256
+  save_img: False
+
+network:
+  num_freq_coord: 5
+  max_freq_coord: 5
+  num_freq_view: 5
+  max_freq_view: 5
+
+  num_layers: 7
+  hidden_dim: 256
+  actv1: 'relu'
+  skip1: [4]
+  feature_dim: 256
+  num_layers_view: 1
+  hidden_dim_view: 128
+  actv2: 'relu'
+  out_actv: 'sigmoid'
+  
+wandb:
+  wandb: True
+  wandb_name: 'mp_dzl'
